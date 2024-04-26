@@ -36,9 +36,13 @@ C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.WebPages.Deploy
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.WebPages.Razor.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Antlr3.Runtime.pdb
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Newtonsoft.Json.xml
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.vbprojResolveAssemblyReference.cache
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.Resources.resources
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.vbproj.GenerateResource.Cache
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.pdb
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.dll
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.dll
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.xml
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.xml
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.vbprojResolveAssemblyReference.cache
