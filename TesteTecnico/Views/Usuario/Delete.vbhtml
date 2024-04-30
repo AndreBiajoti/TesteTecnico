@@ -1,4 +1,7 @@
 ﻿@ModelType TesteTecnico.Usuario
+
+@Imports TesteTecnico.Controllers
+
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -43,11 +46,21 @@ End Code
         </dd>
 
     </dl>
-    @Using (Html.BeginForm())
+    @Using (Html.BeginForm("DeleteConfirmed", "Usuario", New With {.id = Model.idUsuario}, FormMethod.Post, New With {.class = "delete-form"}))
         @Html.AntiForgeryToken()
-
         @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+             @code
+                 If Model.idUsuario = UsuarioController.ObterIdUsuario(Session("NomeUsuario")) Then
+             End Code
+                    <input type = "submit" value="Delete" Class="btn btn-default" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')" /> |
+            @code
+                Else
+            End Code
+            <input type = "submit" value="Delete" Class="btn btn-default" /> |
+            @code
+                End If
+            End Code
+        
             @Html.ActionLink("Back to List", "Index")
         </div>
     End Using

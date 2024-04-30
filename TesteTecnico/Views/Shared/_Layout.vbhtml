@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@Imports TesteTecnico.Controllers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Manga Tecnologia</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,22 +17,50 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", New With { .area = "" }, New With { .class = "navbar-brand" })
+                @Html.ActionLink("Manga", "Index", "Home", New With {.area = ""}, New With {.class = "navbar-brand"})
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+                @Code
+                    If Session("NomeUsuario") IsNot Nothing Then
+                        Dim isAdmin As Boolean = UsuarioController.IsAdmin(Session("NomeUsuario"))
+                        Dim idUsuario As Integer = UsuarioController.ObterIdUsuario(Session("NomeUsuario"))
+
+                End Code
+              
+                <p class="navbar-text navbar-right">
+                    Bem-vindo, @Session("NomeUsuario")
+                    @Code
+                        If isAdmin Then
+                    End Code
+                    @Html.ActionLink("Area administrativa", "Index", "Usuario", Nothing, New With {.class = "navbar-btn btn btn-default"})
+                    @Code
+                        Else
+                    End Code
+                    @Html.ActionLink("Seu cadastro", "Details", "Usuario", New With {.id = idUsuario}, New With {.class = "navbar-btn btn btn-default"})
+                    @Code
+                        End If
+                    End Code
+                   @Html.ActionLink("Sair", "Logout", "Usuario", Nothing, New With {.class = "navbar-btn btn btn-default"})
+                </p>
+                @Code
+    Else
+                End Code
+                
+                    @Html.ActionLink("Cadastre-se", "Create", "Usuario", New With {.area = ""}, New With {.class = "navbar-text navbar-right"})
+                    @Html.ActionLink("Login", "Login", "Usuario", New With {.area = ""}, New With {.class = "navbar-text navbar-right"})
+                               
+               @Code
+                   End If
+                    End Code
+</div>
         </div>
     </div>
-    <div class="container body-content">
+    <div Class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; TESTE TÉCNICO - Manga Tecnologia</p>
         </footer>
     </div>
 

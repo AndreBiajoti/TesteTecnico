@@ -1,4 +1,7 @@
 ﻿@ModelType TesteTecnico.Usuario
+
+@Imports TesteTecnico.Controllers
+
 @Code
     ViewData("Title") = "Details"
 End Code
@@ -32,7 +35,9 @@ End Code
         <dd>
             @Html.DisplayFor(Function(model) model.senha)
         </dd>
-
+        @code
+            If UsuarioController.IsAdmin(Session("NomeUsuario")) Then
+        End Code
         <dt>
             @Html.DisplayNameFor(Function(model) model.admin)
         </dt>
@@ -40,10 +45,23 @@ End Code
         <dd>
             @Html.DisplayFor(Function(model) model.admin)
         </dd>
-
+        @code
+            End If
+        End Code
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.idUsuario }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.idUsuario}) |
+
+    @If Session("NomeUsuario") IsNot Nothing AndAlso UsuarioController.IsAdmin(Session("NomeUsuario")) Then
+        @Html.ActionLink("Voltar", "Index", "Usuario")
+    End If
+
+
+
+   @Using (Html.BeginForm("DeleteConfirmed", "Usuario", FormMethod.Post, New With {.class = "delete-form"}))
+    @Html.AntiForgeryToken()
+    @<button type="submit" class="delete-link" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')">Delete</button>
+        @Html.HiddenFor(Function(model) model.idUsuario)
+   End Using
 </p>

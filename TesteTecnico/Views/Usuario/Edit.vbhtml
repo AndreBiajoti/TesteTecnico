@@ -1,4 +1,7 @@
 ﻿@ModelType TesteTecnico.Usuario
+
+@Imports TesteTecnico.Controllers
+
 @Code
     ViewData("Title") = "Edit"
 End Code
@@ -38,24 +41,40 @@ End Code
             </div>
         </div>
 
-        <div class="form-group">
+    @code
+        If UsuarioController.IsAdmin(Session("NomeUsuario")) Then
+    End Code
+        <div Class="form-group">
             @Html.LabelFor(Function(model) model.admin, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div Class="col-md-10">
                 @Html.EditorFor(Function(model) model.admin, New With { .htmlAttributes = New With { .class = "form-control" } })
                 @Html.ValidationMessageFor(Function(model) model.admin, "", New With { .class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
+    @code   
+        End If
+    End Code
+    
+            
+    <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
-End Using
+    </div>      End Using
 
 <div>
+    @code
+        If UsuarioController.IsAdmin(Session("NomeUsuario")) Then
+    End Code
     @Html.ActionLink("Back to List", "Index")
+    @code
+        Else
+    End Code
+    @Html.ActionLink("Back to List", "Details", New With {.id = Model.idUsuario})
+    @code
+        End If
+    End Code
 </div>
 
 @Section Scripts 
