@@ -47,8 +47,8 @@
         ' Rota para editar o usuario
         routes.MapRoute(
             name:="Edit",
-            url:="Usuario/edit",
-            defaults:=New With {.controller = "Usuario", .action = "Edit"}
+            url:="Usuario/Edit/{id}",
+            defaults:=New With {.controller = "Usuario", .action = "Edit", .id = UrlParameter.Optional}
         )
 
         ' Rota para confirmar a exclusão de um usuário

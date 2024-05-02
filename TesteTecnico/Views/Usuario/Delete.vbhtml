@@ -3,14 +3,14 @@
 @Imports TesteTecnico.Controllers
 
 @Code
-    ViewData("Title") = "Delete"
+    ViewData("Title") = "Deletar"
 End Code
 
-<h2>Delete</h2>
+<h2>Deletar cadastro</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>Usuario</h4>
+    <h4>Tem certeza que quer deletar o cadastro?</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,22 +46,28 @@ End Code
         </dd>
 
     </dl>
-    @Using (Html.BeginForm("DeleteConfirmed", "Usuario", New With {.id = Model.idUsuario}, FormMethod.Post, New With {.class = "delete-form"}))
+    @code
+        Using (Html.BeginForm("DeleteConfirmed", "Usuario", New With {.id = Model.idUsuario}, FormMethod.Post, New With {.class = "delete-form"}))
+    End Code
+
         @Html.AntiForgeryToken()
-        @<div class="form-actions no-color">
-             @code
-                 If Model.idUsuario = UsuarioController.ObterIdUsuario(Session("NomeUsuario")) Then
-             End Code
-                    <input type = "submit" value="Delete" Class="btn btn-default" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')" /> |
+        <div class="form-actions no-color">
+            @Html.ActionLink("Voltar", "Index", "Usuario", New With {.id = Model.idUsuario, .class = "btn btn-default"})
+            @code
+                If Model.idUsuario = UsuarioController.ObterIdUsuario(Session("NomeUsuario")) Then
+            End Code
+                    <input type = "submit" value="Deletar" Class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')" /> 
             @code
                 Else
             End Code
-            <input type = "submit" value="Delete" Class="btn btn-default" /> |
+                    <input type = "submit" value="Deletar" Class="btn btn-delete" /> 
             @code
                 End If
             End Code
         
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    End Using
+   
+    @code
+        End Using
+    End Code
+      </div>
 </div>

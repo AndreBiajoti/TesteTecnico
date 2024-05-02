@@ -7,14 +7,49 @@
 ' </auto-generated>
 '------------------------------------------------------------------------------
 
-Imports System
-Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel
 
 Partial Public Class Usuario
     Public Property idUsuario As Integer
+
+    <Required(ErrorMessage:="O campo Nome é obrigatório.")>
     Public Property nome As String
+
+    <Required(ErrorMessage:="O campo Email é obrigatório.")>
+    <EmailAddress(ErrorMessage:="O Email fornecido não é válido.")>
     Public Property email As String
+
+    <Required(ErrorMessage:="O campo Senha é obrigatório.")>
+    <StringLength(100, MinimumLength:=8, ErrorMessage:="A senha deve ter no mínimo 8 caracteres.")>
     Public Property senha As String
-    Public Property admin As Integer
+
+    <Required(ErrorMessage:="O campo Confirmar Senha é obrigatório.")>
+    <DisplayName("Confirmar Senha")>
+    <Compare("senha", ErrorMessage:="As senhas não coincidem.")>
+    Public Property confirmarSenha As String
+
+    <Required(ErrorMessage:="O campo Admin é obrigatório.")>
+    Public Property admin As Boolean
+
+    Public Function Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult)
+        Dim results As New List(Of ValidationResult)()
+
+        Using db As New TesteTecnicoEntities()
+            ' Verificar se o nome já existe no banco de dados
+            Dim existingName = db.Usuario.FirstOrDefault(Function(u) u.nome = nome AndAlso u.idUsuario <> idUsuario)
+            If existingName IsNot Nothing Then
+                results.Add(New ValidationResult("Esse nome já está sendo utilizado.", {"nome"}))
+            End If
+
+            ' Verificar se o e-mail já existe no banco de dados
+            Dim existingEmail = db.Usuario.FirstOrDefault(Function(u) u.email = email AndAlso u.idUsuario <> idUsuario)
+            If existingEmail IsNot Nothing Then
+                results.Add(New ValidationResult("Esse e-mail já possui cadastro.", {"email"}))
+            End If
+        End Using
+
+        Return results
+    End Function
 
 End Class

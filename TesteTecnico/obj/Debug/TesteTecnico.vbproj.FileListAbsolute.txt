@@ -15,6 +15,8 @@ C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\TesteTecnico.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\TesteTecnico.pdb
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\TesteTecnico.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Antlr3.Runtime.dll
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.dll
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Newtonsoft.Json.dll
@@ -26,6 +28,8 @@ C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.WebPages.Deploy
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.WebPages.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.WebPages.Razor.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\WebGrease.dll
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.xml
+C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.Helpers.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\System.Web.Mvc.xml
@@ -41,8 +45,3 @@ C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.vbproj.
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.dll
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.xml
 C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.pdb
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.dll
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.dll
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.xml
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\bin\EntityFramework.SqlServer.xml
-C:\Users\André\Desktop\TesteTecnico\TesteTecnico\obj\Debug\TesteTecnico.vbprojResolveAssemblyReference.cache

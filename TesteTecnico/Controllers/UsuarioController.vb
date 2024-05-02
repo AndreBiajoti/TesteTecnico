@@ -53,7 +53,7 @@ Namespace Controllers
                 ' Redirecionar para a página inicial
                 Return RedirectToAction("Index", "Home")
             Else
-                ModelState.AddModelError("", "Nome de usuário ou senha inválidos.")
+                ViewBag.LoginErrorMessage = "Nome de usuário ou senha inválidos."
                 Return View(model)
             End If
         End Function
@@ -76,11 +76,11 @@ Namespace Controllers
             Return RedirectToAction("Index", "Home")
         End Function
 
-        ' Verificar se o usuário logado é um administrador (admin = 1)
+        ' Verificar se o usuário logado esta logado e é um administrador 
         Public Shared Function IsAdmin(nomeUsuario As String) As Boolean
             Using db As New TesteTecnicoEntities()
                 Dim usuario = db.Usuario.FirstOrDefault(Function(u) u.nome = nomeUsuario)
-                If usuario IsNot Nothing AndAlso usuario.admin = 1 Then
+                If usuario IsNot Nothing AndAlso usuario.admin Then
                     Return True
                 End If
                 Return False
@@ -117,21 +117,35 @@ Namespace Controllers
         End Function
 
         ' POST: Usuario/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="idUsuario,nome,email,senha,admin")> ByVal usuario As Usuario) As ActionResult
+        Function Create(ByVal usuario As Usuario) As ActionResult
             If ModelState.IsValid Then
-                db.Usuario.Add(usuario)
-                db.SaveChanges()
+                ' Verificar se a senha é igual à senha confirmada
+                If usuario.senha = usuario.confirmarSenha Then
+                    Dim existingName = db.Usuario.Any(Function(u) u.nome = usuario.nome)
+                    Dim existingEmail = db.Usuario.Any(Function(u) u.email = usuario.email)
+                    If existingName Then
+                        ModelState.AddModelError("nome", "Esse nome já está sendo utilizado.")
+                        Return View(usuario)
+                    End If
+                    If existingEmail Then
+                        ModelState.AddModelError("email", "Esse e-mail já possui cadastro.")
+                        Return View(usuario)
+                    End If
 
-                If Session("NomeUsuario") Is Nothing Then
-                    Session("NomeUsuario") = usuario.nome
-                    Return RedirectToAction("Index", "Home")
+                    db.Usuario.Add(usuario)
+                    db.SaveChanges()
+
+                    If Session("NomeUsuario") Is Nothing Then
+                        Session("NomeUsuario") = usuario.nome
+                        Return RedirectToAction("Index", "Home")
+                    End If
+
+                    Return RedirectToAction("Index", "Usuario")
+                Else
+                    ModelState.AddModelError("confirmarSenha", "As senhas não coincidem.")
                 End If
-
-                Return RedirectToAction("Index", "Usuario")
             End If
             Return View(usuario)
         End Function
@@ -158,11 +172,10 @@ Namespace Controllers
         End Function
 
         ' POST: Usuario/Edit/5
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="idUsuario,nome,email,senha,admin")> ByVal usuario As Usuario) As ActionResult
+        Function Edit(<Bind(Include:="idUsuario,nome,email,senha,confirmarSenha,admin")> ByVal usuario As Usuario) As ActionResult
+
             If ModelState.IsValid Then
                 db.Entry(usuario).State = EntityState.Modified
                 db.SaveChanges()
@@ -175,7 +188,6 @@ Namespace Controllers
                     ' Redirecionar o administrador para a página Index
                     Return RedirectToAction("Index", "Usuario")
                 Else
-                    usuario.admin = False
                     ' Redirecionar o usuário comum para a página Details
                     Return RedirectToAction("Details", "Usuario", New With {.id = usuario.idUsuario})
                 End If
@@ -195,7 +207,7 @@ Namespace Controllers
             Dim isDeletingOwnAccount As Boolean = (id = idUsuario)
 
             ' Se o usuário está excluindo seu próprio cadastro, fazer logout
-            If isDeletingOwnAccount Then
+            If isDeletingOwnAccount OrElse Not IsAdmin(Session("NomeUsuario")) Then
                 ' Limpar a sessão ou fazer qualquer outra operação de logout necessária
                 Session.Clear()
 

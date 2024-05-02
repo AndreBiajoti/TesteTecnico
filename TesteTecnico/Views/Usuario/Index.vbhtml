@@ -1,28 +1,30 @@
 ﻿@ModelType IEnumerable(Of TesteTecnico.Usuario)
 @Code
-    ViewData("Title") = "Index"
+    ViewData("Title") = "Administrador"
 End Code
 
-<h2>Index</h2>
+<h2>Lista de cadastros</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar usuário", "Create", Nothing, New With {.class = "btn btn-default"})
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.nome)
+            Nome
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.email)
+            E-mail
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.senha)
+            Senha
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.admin)
+            Administrador
         </th>
-        <th></th>
+        <th>
+            Ações
+        </th>
     </tr>
 
     @For Each item In Model
@@ -40,9 +42,9 @@ End Code
                 @Html.DisplayFor(Function(modelItem) item.admin)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.idUsuario}) |
-                @Html.ActionLink("Detalhes", "Details", New With {.id = item.idUsuario}) |
-                @Html.ActionLink("Deletar", "Delete", New With {.id = item.idUsuario})
+                <button type="button" onclick="window.location='@Url.Action("Edit", New With {.id = item.idUsuario})'" class="btn btn-default">Editar</button>
+                <button type="button" onclick="window.location='@Url.Action("Details", New With {.id = item.idUsuario})'" class="btn btn-default">Detalhes</button>
+                <button type="button" onclick="window.location='@Url.Action("Delete", New With {.id = item.idUsuario})'" class="btn btn-default">Deletar</button>
             </td>
         </tr>
     Next

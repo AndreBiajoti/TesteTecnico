@@ -1,47 +1,59 @@
 ﻿@Code
-    ViewData("Title") = "Home Page"
+    ViewData("Title") = "Home"
 End Code
+<div class="index">
+    <div class="jumbotron">
+        <img src="~/Image/Carrossel/MangaLogo.png" width="950" height="500" alt="Logo" />
+    </div>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Bem-vindo à Manga Tecnologia</h1>
+                <p class="lead">Desenvolvemos soluções de software modernas para simplificar e otimizar a gestão do seu negócio.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Nossa História</h2>
+                <p>A Manga Tecnologia surgiu da necessidade de um sistema que realmente entendesse e atendesse às demandas diárias de um posto de combustível. Como não encontramos soluções que se alinhassem com a realidade operacional, decidimos criar o nosso próprio sistema. O resultado foi o Posto Pro, um software desenvolvido com base na experiência prática e na linguagem do dia a dia de um posto, agora disponível para otimizar a sua operação.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Nossa Visão</h2>
+                <p>Nossa visão é ser reconhecidos como referência na criação do melhor software para pessoas, oferecendo soluções inovadoras que atendam às necessidades do mercado.</p>
+                <p>Buscamos constantemente aprimorar nossos produtos e serviços para proporcionar experiências excepcionais aos nossos clientes, contribuindo assim para o sucesso e crescimento sustentável de seus negócios.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Nossa Missão</h2>
+                <p>Nossa missão é transformar ideias audaciosas em realidade por meio da programação e do desenvolvimento de soluções tecnológicas que impulsionem o crescimento e o sucesso dos nossos clientes.</p>
+                <p>Comprometemo-nos a oferecer produtos e serviços de qualidade superior, aliados a um atendimento personalizado e eficiente, para superar as expectativas dos nossos clientes e estabelecer relações duradouras baseadas na confiança e na excelência.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Nossos Valores</h2>
+                <ul>
+                    <li><strong>Respeito:</strong> Valorizamos o respeito mútuo em todas as nossas interações, tanto internas quanto externas.</li>
+                    <li><strong>Trabalho em Equipe:</strong> Acreditamos no poder da colaboração e no trabalho conjunto para alcançar resultados excepcionais.</li>
+                    <li><strong>Criatividade:</strong> Incentivamos a criatividade e a inovação como catalisadores para a excelência em nossas soluções.</li>
+                    <li><strong>Amor ao Próximo:</strong> Colocamos o bem-estar e o sucesso dos nossos clientes e colaboradores em primeiro lugar, cultivando relacionamentos baseados na empatia e na integridade.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <address>
+        Av. Expedicionários, 1060<br />
+        Jardim Vila Rica, Passos - MG<br />
+        <abbr title="Phone">Tel:</abbr>
+        (35) 99760-3099
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <a href="https://www.facebook.com/mangatecnologia" target="_blank"><img src="~/Image/Sociais/facebook.png" alt="Facebook" width="30" height="30"></a>
+            <a href="https://www.instagram.com/manga.tecnologia/" target="_blank"><img src="~/Image/Sociais/instagram.png" alt="Instagram" width="30" height="30"></a>
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    </address>
 </div>
-
-
-<h2>@ViewData("Title").</h2>
-<h3>@ViewData("Message")</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>

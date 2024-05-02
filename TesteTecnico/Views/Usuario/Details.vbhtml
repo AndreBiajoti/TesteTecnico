@@ -3,17 +3,17 @@
 @Imports TesteTecnico.Controllers
 
 @Code
-    ViewData("Title") = "Details"
+    ViewData("Title") = "Detalhes"
 End Code
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>Usuario</h4>
+    <h4>Verifique os detalhes do cadastro!</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Function(model) model.nome)
+            Nome de usuário
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.email)
+            E-mail
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.senha)
+            Senha
         </dt>
 
         <dd>
@@ -39,7 +39,7 @@ End Code
             If UsuarioController.IsAdmin(Session("NomeUsuario")) Then
         End Code
         <dt>
-            @Html.DisplayNameFor(Function(model) model.admin)
+            Administrador
         </dt>
 
         <dd>
@@ -51,17 +51,15 @@ End Code
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With {.id = Model.idUsuario}) |
+    @Using (Html.BeginForm("DeleteConfirmed", "Usuario", FormMethod.Post, New With {.class = "delete-form"}))
+    @Html.ActionLink("Editar", "Edit", "Usuario", New With {.id = Model.idUsuario, .class = "btn btn-default spaced-button"}) 
 
     @If Session("NomeUsuario") IsNot Nothing AndAlso UsuarioController.IsAdmin(Session("NomeUsuario")) Then
-        @Html.ActionLink("Voltar", "Index", "Usuario")
-    End If
-
-
-
-   @Using (Html.BeginForm("DeleteConfirmed", "Usuario", FormMethod.Post, New With {.class = "delete-form"}))
+        @Html.ActionLink("Voltar", "Index", "Usuario", New With {.id = Model.idUsuario, .class = "btn btn-default"}) 
+    Else
     @Html.AntiForgeryToken()
-    @<button type="submit" class="delete-link" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')">Delete</button>
+    @<button type="submit" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir seu próprio usuário?')">Deletar</button>
         @Html.HiddenFor(Function(model) model.idUsuario)
-   End Using
+    End If
+    End Using
 </p>
